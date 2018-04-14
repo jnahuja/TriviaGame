@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hangman Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap File -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/javascript/game.js"></script>
+</head>
+
+<body>
+    <!-- Overall Bootstrap Grid -->
+    <div class="container">
+
+        <!-- Jumbotron with Title -->
+        <div class="jumbotron jumbotronHeaderImg">
+
+            <!-- <img src="assets/images/darth-vader-fight.jpg" alt="HANGMAN ANIMATION" class="img hangman-image"> -->
+            <h1 class="text-center">
+                <strong></strong>
+                <br>
+                <br>
+            </h1>
+            <hr>
+            <div id="musicControls" class="text-center">
+                <button class="btn btn-warning btn-xs theme-button">
+                    <span class="glyphicon glyphicon-music"></span>Music!</button>
+                <button class="btn btn-dark btn-xs pause-button">
+                    <span class="glyphicon glyphicon-pause"></span>Stop Music</button>
+            </div>
+
+        </div>
+        <!-- This div can be used to store the character cards -->
+        <div class="row">
+            <p class="subHeadings" id="rules">
+                <!-- PICK YOUR SHIP! -->
+            </p>
+        </div>
+        <div class="row text-center">
+            <p id="character-row">
+                <span id="characters"></span>
+            </p>
+        </div>
+        <div class="row">
+            <p class="subHeadings" id="arenaHeading">
+                <!-- Fighting Arena -->
+            </p>
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-4" id="yourCharacter">
+
+            </div>
+            <div class="col-lg-4 text-center">
+                <button class="btn" id="attackButton">
+                    <span class="glyphicon"></span>Attack!</button>
+                </button>
+            </div>
+            <div class="col-lg-4" id="opponentCharacter">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 attackStatus">
+                <p class="attackStatusText" id="yourFightStatus">
+                </p>
+                <p class="attackStatusText" id="opponentFightStatus">
+                </p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
