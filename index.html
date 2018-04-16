@@ -11,7 +11,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/javascript/game.js"></script>
+    <script src="assets/javascript/triviaJS.js"></script>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 
             <!-- <img src="assets/images/darth-vader-fight.jpg" alt="HANGMAN ANIMATION" class="img hangman-image"> -->
             <h1 class="text-center">
-                <strong></strong>
+                <strong>Who Wants to be a Millionaire</strong>
                 <br>
                 <br>
             </h1>
@@ -36,10 +36,50 @@
             </div>
 
         </div>
-        <!-- This div can be used to store the character cards -->
+
         <div class="row">
+            <p class="subHeadings" id="triviaQuestion">
+            </p>
+        </div>
+        <div class="row">
+            <p class="subHeadings" id="timer">
+                Timer
+            </p>
+        </div>
+
+        <div class="row justify-content-center" id="triviaAnswers">
+            <div class="col-lg-4" id="firstAnswerColumn">
+                <!-- <div class="row justify-content-center answerButton">
+                        <div class="triangleLeft"></div>
+                        <button class="triviaAnswer" data-answer="1">Answer 1</button>
+                        <div class="triangleRight"></div>
+                </div>
+                <div class="row justify-content-center answerButton">
+                        <div class="triangleLeft"></div>
+                        <button class="triviaAnswer" data-answer="1">Answer 3</button>
+                        <div class="triangleRight"></div>
+                </div> -->
+            </div>
+            <div class="col-lg-4" id="secondAnswerColumn">
+                    <!-- <div class="row justify-content-center answerButton">
+                            <div class="triangleLeft"></div>
+                            <button class="triviaAnswer" data-answer="1">Answer 2</button>
+                            <div class="triangleRight"></div>
+                    </div>
+                    <div class="row justify-content-center answerButton">
+                            <div class="triangleLeft"></div>
+                            <button class="triviaAnswer" data-answer="1">Answer 4</button>
+                            <div class="triangleRight"></div>
+                    </div> -->
+            </div>
+        </div>
+        
+
+
+
+
+        <!-- <div class="row">
             <p class="subHeadings" id="rules">
-                <!-- PICK YOUR SHIP! -->
             </p>
         </div>
         <div class="row text-center">
@@ -49,7 +89,6 @@
         </div>
         <div class="row">
             <p class="subHeadings" id="arenaHeading">
-                <!-- Fighting Arena -->
             </p>
         </div>
         <div class="row text-center">
@@ -72,7 +111,7 @@
                 <p class="attackStatusText" id="opponentFightStatus">
                 </p>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </body>
