@@ -1,8 +1,12 @@
 $(document).ready(function() {
 
     var currentTriviaQuestion = "";
+    var currentCorrectAnswer = "";
     var currentTriviaAnswers = []; // ["", "", "", ""];
     var questionCounter = 0;
+    var wins = 0;
+    var losses = 0;
+    
 
     // var triviaQuestions = [{
     //     questionNumber: 0,
@@ -16,9 +20,13 @@ $(document).ready(function() {
 
     var main = $("body");
     var btns = main.find("button");
-        
 
-
+    function initialize() {
+        triviaQuestions = [];
+        currentTriviaQuestion = "";
+        currentTriviaAnswers = []; // ["", "", "", ""];
+        questionCounter = 0;
+    }
 
 
     // "https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple"
@@ -69,81 +77,6 @@ $(document).ready(function() {
         ajaxTriviaCall("hard");
     }
     
-    // Function to display the next trivia question and answers in the div
-    function displayTriviaQuestion() {
-
-        // $("#triviaAnswers").empty();
-        console.log("In display answers function");
-        $("#triviaQuestion").empty();
-        $("#triviaQuestion").text(currentTriviaQuestion);
-
-        $("#firstAnswerColumn").empty();
-        $("#secondAnswerColumn").empty();
-
-        // Looping through the array of questions
-        for (var i = 0; i < 4; i++) {
-
-          var answerDiv = $("<div>");
-          answerDiv.addClass("row justify-content-center answerButton");
-          
-          var answerDivLeftTriangle = $("<div>");
-          answerDivLeftTriangle.addClass("triangleLeft");
-
-          var answerDivRightTriangle = $("<div>");
-          answerDivRightTriangle.addClass("triangleRight");
-
-          
-          var buttonDiv = $("<button>");
-          buttonDiv.addClass("triviaAnswer");
-          buttonDiv.attr("data-answer", i);
-          buttonDiv.text(currentTriviaAnswers[i]);
-          
-          if (i==0 || i==3) {
-            $("#firstAnswerColumn").append(answerDiv);
-          }
-          else {
-            $("#secondAnswerColumn").append(answerDiv);
-          }
-          
-          answerDiv.append(answerDivLeftTriangle);
-          answerDiv.append(buttonDiv);
-          answerDiv.append(answerDivRightTriangle);
-        }
-
-//         <div class="row justify-content-center answerButton">
-//         <div class="triangleLeft"></div>
-//         <button class="triviaAnswer" data-answer="1">Answer 1</button>
-//         <div class="triangleRight"></div>
-// </div>
-
-    }
-
-    function populateCurrentAnswers(questionIndex) {
-        currentTriviaQuestion = triviaQuestions[questionIndex].question;
-        // console.log(currentTriviaQuestion);
-        // console.log(triviaQuestions);
-        var answerPosition = Math.floor(Math.random()*4);
-        // console.log(answerPosition);
-        var incorrectCounter = 0;
-        for (i=0; i<4; i++) {
-            // console.log("I iteration " + i);
-            if (i==answerPosition) {
-                currentTriviaAnswers.push(triviaQuestions[questionIndex].correctAnswer)
-            }
-            else {
-                // console.log(incorrectCounter);
-                // console.log(triviaQuestions[0].incorrectAnswers[incorrectCounter]);
-                currentTriviaAnswers.push(triviaQuestions[questionIndex].incorrectAnswers[incorrectCounter]);
-                incorrectCounter = incorrectCounter + 1;
-            }
-        }
-        console.log(currentTriviaAnswers);
-        questionCounter = questionCounter + 1;
-        displayTriviaQuestion();
-    }
-
-
-
     function begin() {
 
         var answerDiv = $("<div>");
@@ -164,6 +97,111 @@ $(document).ready(function() {
         answerDiv.append(answerDivLeftTriangle);
         answerDiv.append(buttonDiv);
         answerDiv.append(answerDivRightTriangle);
+    }
+
+    // Function to display the next trivia question and answers in the div
+    function displayTriviaQuestion(answerPosition) {
+
+        // $("#triviaAnswers").empty();
+        console.log("In display answers function");
+        $("#triviaQuestion").empty();
+        $("#triviaQuestion").html(currentTriviaQuestion).text();
+
+        $("#firstAnswerColumn").empty();
+        $("#secondAnswerColumn").empty();
+
+        // Looping through the array of questions
+        for (var i = 0; i < 4; i++) {
+
+          var answerDiv = $("<div>");
+          answerDiv.addClass("row justify-content-center");
+          
+          var answerDivLeftTriangle = $("<div>");
+          answerDivLeftTriangle.addClass("triangleLeft");
+
+          var answerDivRightTriangle = $("<div>");
+          answerDivRightTriangle.addClass("triangleRight");
+
+          
+          var buttonDiv = $("<button>");
+          buttonDiv.addClass("triviaAnswer");
+          buttonDiv.addClass("answerButton");
+          if (i==answerPosition) {
+            buttonDiv.attr("answer-review", "correct");
+          }
+          else {
+            buttonDiv.attr("answer-review", "incorrect");
+          }
+          //   buttonDiv.attr("data-answer", i);
+        //   buttonDiv.attr("answerCorrect", i);
+        //   buttonDiv.text(currentTriviaAnswers[i]);
+          buttonDiv.html(currentTriviaAnswers[i]).text();
+
+          if (i==0 || i==3) {
+            $("#firstAnswerColumn").append(answerDiv);
+          }
+          else {
+            $("#secondAnswerColumn").append(answerDiv);
+          }
+          
+          answerDiv.append(answerDivLeftTriangle);
+          answerDiv.append(buttonDiv);
+          answerDiv.append(answerDivRightTriangle);
+        }
+
+//         <div class="row justify-content-center answerButton">
+//         <div class="triangleLeft"></div>
+//         <button class="triviaAnswer" data-answer="1">Answer 1</button>
+//         <div class="triangleRight"></div>
+// </div>
+
+    }
+
+    // function decodeString() {
+    //     var enc = encodeURIComponent(currentTriviaQuestion);
+    //     var dec = decodeURIComponent(enc);
+    //     console.log(dec);
+    //     currentTriviaQuestion = dec;
+    //     console.log("decode string function " + currentTriviaQuestion);
+    // }
+
+    function populateCurrentAnswers(questionIndex) {
+        currentTriviaQuestion = "";
+        currentCorrectAnswer = "";
+        currentTriviaAnswers = [];
+        currentTriviaQuestion = triviaQuestions[questionIndex].question;
+        currentCorrectAnswer = triviaQuestions[questionIndex].correctAnswer;
+        // console.log(currentTriviaQuestion);
+        // console.log(triviaQuestions);
+        var answerPosition = Math.floor(Math.random()*4);
+        // console.log(answerPosition);
+        var incorrectCounter = 0;
+        for (i=0; i<4; i++) {
+            // console.log("I iteration " + i);
+            if (i==answerPosition) {
+                currentTriviaAnswers.push(triviaQuestions[questionIndex].correctAnswer)
+            }
+            else {
+                // console.log(incorrectCounter);
+                // console.log(triviaQuestions[0].incorrectAnswers[incorrectCounter]);
+                currentTriviaAnswers.push(triviaQuestions[questionIndex].incorrectAnswers[incorrectCounter]);
+                incorrectCounter = incorrectCounter + 1;
+            }
+        }
+        console.log(currentTriviaAnswers);
+        questionCounter = questionCounter + 1;
+        // decodeString();
+        displayTriviaQuestion(answerPosition);
+    }
+
+    function runNewQuestion() {
+        // $("#triviaQuestion").empty();
+        // $("#firstAnswerColumn").empty();
+        // $("#secondAnswerColumn").empty();
+        // $("#triviaQuestion").text("That is Correct!");
+        populateCurrentAnswers(questionCounter);
+        stopwatch.reset();
+        stopwatch.start();
 
     }
 
@@ -172,28 +210,166 @@ $(document).ready(function() {
     buildTriviaQuestions();
     // populateCurrentAnswers();
 
+    var clockRunning = false;
+    var stopwatch = {
+        time: 30,
+        reset: function() {      
+          stopwatch.time = 30;
+          // DONE: Change the "display" div to "00:00."
+          $("#timer").text("30");
+        },
+        start: function() {
+          // DONE: Use setInterval to start the count here and set the clock to running.
+          if (!clockRunning) {
+            intervalId = setInterval(stopwatch.count, 1000);
+            clockRunning = true;
+          }
+        },
+        stop: function() {
+      
+          // DONE: Use clearInterval to stop the count here and set the clock to not be running.
+          clearInterval(intervalId);
+          clockRunning = false;
+        },
+        count: function() {
+          // DONE: increment time by 1, remember we cant use "this" here.
+          stopwatch.time = stopwatch.time - 1;
+          // DONE: Get the current time, pass that into the stopwatch.timeConverter function,
+          //       and save the result in a variable.
+          var converted = stopwatch.timeConverter(stopwatch.time);
+          console.log(converted);
+          // DONE: Use the variable we just created to show the converted time in the "display" div.
+          $("#timer").text(converted);
+        },
+        timeConverter: function(seconds) {
+      
+        //   var minutes = Math.floor(t / 60);
+        //   var seconds = t - (minutes * 60);
+      
+          if (seconds < 10) {
+            seconds = "0" + seconds;
+          }
+          return seconds;
+      
+        //   if (minutes === 0) {
+        //     minutes = "00";
+        //   }
+        //   else if (minutes < 10) {
+        //     minutes = "0" + minutes;
+        //   }
+      
+        //   return minutes + ":" + seconds;
+        }
+      };
+
     // $(document).on("click", ".movie", displayMovieInfo);
     $("button").on("click", function() {
-        console.log("button click");
-        $("#triviaQuestion").empty();
-        // console.log(triviaQuestions);
-        populateCurrentAnswers(questionCounter);
-        // displayTriviaQuestion();
-        // In this case, the "this" keyword refers to the button that was clicked
-        // var person = $(this).attr("data-person");
-    });
-
-
-    $(".triviaAnswer").on("click", function() {
         console.log("button click");
         // $("#triviaQuestion").empty();
         // console.log(triviaQuestions);
         populateCurrentAnswers(questionCounter);
+        stopwatch.reset();
+        // setInterval(stopwatch.count, 1000);
+        stopwatch.start();
+        
         // displayTriviaQuestion();
         // In this case, the "this" keyword refers to the button that was clicked
         // var person = $(this).attr("data-person");
     });
+
+    $("body").on("click", ".answerButton", function() {
+        console.log("button click");
+        console.log(this);
+        console.log($(this).attr("answer-review"));
+
+        if ($(this).attr("answer-review")=="correct") {
+            // alert("correct");
+            // displayCorrect();
+            $("#triviaQuestion").empty();
+            $("#firstAnswerColumn").empty();
+            $("#secondAnswerColumn").empty();
+            $("#triviaQuestion").text("That is Correct!");
+            stopwatch.stop();
+            setTimeout(runNewQuestion,5000);
+            
+            // delayButtonAlert = setTimeout(function() {
+            //     alert("Alert #2");
+            //   }, 3000);
+
+        }
+        else {
+            // alert("wrong");
+            // alert("wrong");
+            $("#triviaQuestion").empty();
+            $("#firstAnswerColumn").empty();
+            $("#secondAnswerColumn").empty();
+            $("#triviaQuestion").text('That is Incorrect. The correct answer is "' + currentCorrectAnswer + '".');
+            stopwatch.stop();
+            setTimeout(runNewQuestion,5000);
+        }
+
+
+
+    });
+
+    // $(".triviaAnswer").on("click", function() {
+    //     console.log("button click");
+    //     // $("#triviaQuestion").empty();
+    //     // console.log(triviaQuestions);
+    //     populateCurrentAnswers(questionCounter);
+    //     // displayTriviaQuestion();
+    //     // In this case, the "this" keyword refers to the button that was clicked
+    //     // var person = $(this).attr("data-person");
+    // });
     
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
