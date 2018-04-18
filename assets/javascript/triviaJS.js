@@ -6,7 +6,7 @@ $(document).ready(function() {
     var questionCounter = 0;
     var wins = 0;
     var losses = 0;
-    
+    var answerIndex = ["A. ", "B. ", "C. ", "D. "];
 
     // var triviaQuestions = [{
     //     questionNumber: 0,
@@ -110,6 +110,8 @@ $(document).ready(function() {
         $("#firstAnswerColumn").empty();
         $("#secondAnswerColumn").empty();
 
+
+
         // Looping through the array of questions
         for (var i = 0; i < 4; i++) {
 
@@ -135,7 +137,10 @@ $(document).ready(function() {
           //   buttonDiv.attr("data-answer", i);
         //   buttonDiv.attr("answerCorrect", i);
         //   buttonDiv.text(currentTriviaAnswers[i]);
-          buttonDiv.html(currentTriviaAnswers[i]).text();
+        //   var answerContent = html(currentTriviaAnswers[i]);
+        //   buttonDiv.text(answerContent + "ASDFADSF");
+          buttonDiv.html("<span class='answerIndex'>"+answerIndex[i]+"</span>"+currentTriviaAnswers[i]).text();
+        //   <span style="color:black">A. </span>
 
           if (i==0 || i==3) {
             $("#firstAnswerColumn").append(answerDiv);
@@ -251,22 +256,10 @@ $(document).ready(function() {
         },
         timeConverter: function(seconds) {
       
-        //   var minutes = Math.floor(t / 60);
-        //   var seconds = t - (minutes * 60);
-      
           if (seconds < 10) {
             seconds = "0" + seconds;
           }
           return seconds;
-      
-        //   if (minutes === 0) {
-        //     minutes = "00";
-        //   }
-        //   else if (minutes < 10) {
-        //     minutes = "0" + minutes;
-        //   }
-      
-        //   return minutes + ":" + seconds;
         }
       };
 
@@ -298,7 +291,7 @@ $(document).ready(function() {
             $("#secondAnswerColumn").empty();
             $("#triviaQuestion").text("That is Correct!");
             stopwatch.stop();
-            setTimeout(runNewQuestion,5000);
+            setTimeout(runNewQuestion,3000);
             
             // delayButtonAlert = setTimeout(function() {
             //     alert("Alert #2");
@@ -313,7 +306,7 @@ $(document).ready(function() {
             $("#secondAnswerColumn").empty();
             $("#triviaQuestion").text('That is Incorrect. The correct answer is "' + currentCorrectAnswer + '".');
             stopwatch.stop();
-            setTimeout(runNewQuestion,5000);
+            setTimeout(runNewQuestion,3000);
         }
 
 
