@@ -19,33 +19,42 @@
     <div class="container">
 
         <!-- Jumbotron with Title -->
-        <div class="jumbotron jumbotronHeaderImg">
+        <div class="jumbotron jumbotronHeaderImg" id="titleBlock">
 
             <!-- <img src="assets/images/darth-vader-fight.jpg" alt="HANGMAN ANIMATION" class="img hangman-image"> -->
-            <h1 class="text-center">
+            <h1 class="text-center" id="titleText">
                 <strong>Who Wants to be a Millionaire</strong>
                 <br>
                 <br>
             </h1>
-            <hr>
-            <div id="musicControls" class="text-center">
+            <!-- <hr> -->
+            <!-- <div id="musicControls" class="text-center">
                 <button class="btn btn-warning btn-xs theme-button">
                     <span class="glyphicon glyphicon-music"></span>Music!</button>
                 <button class="btn btn-dark btn-xs pause-button">
                     <span class="glyphicon glyphicon-pause"></span>Stop Music</button>
-            </div>
+            </div> -->
 
         </div>
 
-        <div class="row">
-            <p class="subHeadings" id="triviaQuestion">
-            </p>
+        <div class="row justify-content-center" id="winsDiv">
         </div>
+        
+        <div class="row justify-content-center" id="lossesDiv">
+        </div>
+
+        
         <div class="row">
             <p class="subHeadings" id="timer">
                 Timer
                 <!-- Which of these levels does NOT appear in the console/PC versions of the game &quot;Sonic Generations&quot;? -->
             </p>
+        </div>
+
+        <div class="row">
+            <div class="subHeadings col-lg-8" id="triviaQuestion">
+                    <!-- subHeadings -->
+            </div>
         </div>
 
         <div class="row justify-content-center" id="triviaAnswers">

@@ -80,7 +80,7 @@ $(document).ready(function() {
     function begin() {
 
         var answerDiv = $("<div>");
-        answerDiv.addClass("row justify-content-center answerButton");
+        answerDiv.addClass("row justify-content-center");
         
         var answerDivLeftTriangle = $("<div>");
         answerDivLeftTriangle.addClass("triangleLeft");
@@ -89,7 +89,7 @@ $(document).ready(function() {
         answerDivRightTriangle.addClass("triangleRight");
 
         var buttonDiv = $("<button>");
-        buttonDiv.addClass("triviaAnswer");
+        buttonDiv.addClass("beginButton");
         // buttonDiv.attr("data-answer", i);
         buttonDiv.text("Begin");
         
@@ -105,7 +105,25 @@ $(document).ready(function() {
         // $("#triviaAnswers").empty();
         console.log("In display answers function");
         $("#triviaQuestion").empty();
-        $("#triviaQuestion").html(currentTriviaQuestion).text();
+
+        var questionDiv = $("<div>");
+        questionDiv.addClass("row justify-content-center");
+
+        var questionDivLeftTriangle = $("<div>");
+        questionDivLeftTriangle.addClass("triangleLeft");
+
+        var questionDivRightTriangle = $("<div>");
+        questionDivRightTriangle.addClass("triangleRight");
+
+        var questionButtonDiv = $("<button>");
+        questionButtonDiv.addClass("triviaQuestionButton");
+        questionButtonDiv.html(currentTriviaQuestion).text();
+
+        $("#triviaQuestion").append(questionDiv);
+        questionDiv.append(questionDivLeftTriangle);
+        questionDiv.append(questionButtonDiv);
+        questionDiv.append(questionDivRightTriangle);
+        // $("#triviaQuestion").html(currentTriviaQuestion).text();
 
         $("#firstAnswerColumn").empty();
         $("#secondAnswerColumn").empty();
@@ -116,7 +134,7 @@ $(document).ready(function() {
         for (var i = 0; i < 4; i++) {
 
           var answerDiv = $("<div>");
-          answerDiv.addClass("row justify-content-center");
+          answerDiv.addClass("row justify-content-center answerBlock");
           
           var answerDivLeftTriangle = $("<div>");
           answerDivLeftTriangle.addClass("triangleLeft");
@@ -243,10 +261,14 @@ $(document).ready(function() {
           //       and save the result in a variable.
           var converted = stopwatch.timeConverter(stopwatch.time);
           if (converted == "00") {
-            $("#triviaQuestion").empty();
+            // $("#triviaQuestion").empty();
+            losses = losses + 1;
+            $("#winsDiv").text("Wins: "+ wins);
+            $("#lossesDiv").text("Losses: "+losses);
             $("#firstAnswerColumn").empty();
             $("#secondAnswerColumn").empty();
-            $("#triviaQuestion").text('Time is up. The correct answer is "' + currentCorrectAnswer + '".');
+            // $("#triviaQuestion").text('Time is up. The correct answer is "' + currentCorrectAnswer + '".');
+            $(".triviaQuestionButton").text('Time is up. The correct answer is "' + currentCorrectAnswer + '".');
             stopwatch.stop();
             setTimeout(runNewQuestion,5000);
           }
@@ -264,6 +286,7 @@ $(document).ready(function() {
       };
 
     // $(document).on("click", ".movie", displayMovieInfo);
+    // Only applies to statically created buttons on the page's initial load
     $("button").on("click", function() {
         console.log("button click");
         // $("#triviaQuestion").empty();
@@ -286,10 +309,14 @@ $(document).ready(function() {
         if ($(this).attr("answer-review")=="correct") {
             // alert("correct");
             // displayCorrect();
-            $("#triviaQuestion").empty();
+            wins = wins + 1;
+            $("#winsDiv").text("Wins: "+ wins);
+            $("#lossesDiv").text("Losses: "+losses);
             $("#firstAnswerColumn").empty();
             $("#secondAnswerColumn").empty();
-            $("#triviaQuestion").text("That is Correct!");
+            // $("#triviaQuestion").empty();
+            // $("#triviaQuestion").text("That is Correct!");
+            $(".triviaQuestionButton").text("That is Correct!");
             stopwatch.stop();
             setTimeout(runNewQuestion,3000);
             
@@ -301,10 +328,14 @@ $(document).ready(function() {
         else {
             // alert("wrong");
             // alert("wrong");
-            $("#triviaQuestion").empty();
+            losses = losses + 1;
+            $("#winsDiv").text("Wins: "+ wins);
+            $("#lossesDiv").text("Losses: "+losses);
             $("#firstAnswerColumn").empty();
             $("#secondAnswerColumn").empty();
-            $("#triviaQuestion").text('That is Incorrect. The correct answer is "' + currentCorrectAnswer + '".');
+            // $("#triviaQuestion").empty();
+            // $("#triviaQuestion").text('That is Incorrect. The correct answer is "' + currentCorrectAnswer + '".');
+            $(".triviaQuestionButton").text('That is Incorrect. The correct answer is "' + currentCorrectAnswer + '".');
             stopwatch.stop();
             setTimeout(runNewQuestion,3000);
         }
