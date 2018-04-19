@@ -211,58 +211,8 @@ body {
 
 
 
-
-
-
-
-
-.newCharacterDiv {
-    display: inline-block;
-	width: 200px;
-	border: solid 4px black;
-	margin: 10px;
-	border-radius: 7px;
-}
-
-.updatedCharacter {
-    background: lightgrey;
-}
-
-.updatedCharacterDiv {
-    display: inline-block;
-	width: 200px;
-	border: solid 4px black;
-	margin: 10px;
-    border-radius: 7px;
-    background: lightgrey;
-}
-
-.chosenCharacterDiv {
-    display: inline-block;
-	width: 200px;
-	border: solid 4px black;
-	margin: 10px;
-    border-radius: 7px;
-    background: green;
-    margin-top: 80px;
-}
-
-.opponentCharacterDiv {
-    display: inline-block;
-	width: 200px;
-	border: solid 4px black;
-	margin: 10px;
-    border-radius: 7px;
-    background: red;
-    margin-top: 80px;
-}
-
 p {
     margin-bottom: 2px;
-}
-
-#character-row {
-    margin: auto;
 }
 
 .subHeadings {
@@ -272,22 +222,6 @@ p {
     padding: 10px 0px 20px;
 }
 
-.attackStatus {
-    font-size: 18px;
-    font-weight: bold;
-    margin: auto;
-    text-align: center;
-}
-
-.hangman-image {
-    max-width: 100%;
-}
-
-#hangman {
-    background: white;
-    width: 100%;
-}
-
 .jumbotronHeaderImg {
     /* background: url("../images/star-wars-title9.JPG"); */
     background-size: cover;
@@ -295,47 +229,3 @@ p {
     padding-bottom: 25px;
 }
 
-#my-word {
-    margin: 0;
-    display: block;
-    padding: 0;
-    display:block;
-  }
-
-
-#currentWord {
-    padding-top: 5px;
-}
-
-.gameLabels {
-    font-size: 24px;
-    /* font-family: Georgia, 'Times New Roman', Times, serif; */
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-}
-
-.newLetterDiv {
-    /* margin: 0;
-    display: block;
-    padding: 0;
-    display:block;
-    white-space: nowrap;
-    max-width: 100%;
-    overflow: auto; */
-    color: transparent;
-    border-bottom: 3px solid black;
-    padding: 2px;
-    margin: 12px;
-    display: inline;
-    font-size: 36px;
-}
-
-.oldLetterDiv {
-    /* color: transparent; */
-    color: black;
-    /* border-bottom: 3px solid black; */
-    padding: 2px;
-    margin: 12px;
-    display: inline;
-    font-size: 36px;
-}
